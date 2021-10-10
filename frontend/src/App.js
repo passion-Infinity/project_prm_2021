@@ -14,6 +14,7 @@ import GetStartedScreen from './screens/GetStartedScreen';
 import HomeScreen from './screens/HomeScreen';
 import AreaScreen from './screens/AreaScreen';
 import TabNavigation1 from './screens/TabNavigation1';
+import SchoolDetailsScreen from './screens/SchoolDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +53,13 @@ function App() {
         <Stack.Screen
           name="TabNavigation1"
           component={TabNavigation1}
+          options={({route}) => ({
+            headerShown: false,
+          })}
+        />
+        <Stack.Screen
+          name="SchoolDetailsScreen"
+          component={SchoolDetailsScreen}
           options={({route}) => ({
             headerShown: false,
           })}

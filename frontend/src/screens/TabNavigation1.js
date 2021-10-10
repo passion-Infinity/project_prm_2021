@@ -4,13 +4,13 @@ import {Platform, TouchableOpacity, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import AreaScreen from './AreaScreen';
+import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation1() {
   return (
     <Tab.Navigator
-      initialRouteName="AreaScreen"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
@@ -79,8 +79,8 @@ export default function TabNavigation1() {
         }}></Tab.Screen>
 
       <Tab.Screen
-        name={'AreaScreen'}
-        component={AreaScreen}
+        name={'Profile'}
+        component={Profile}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (

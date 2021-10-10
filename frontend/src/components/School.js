@@ -1,16 +1,16 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
-export default function School() {
+export default function School({data, onPress}) {
   return (
-    <TouchableOpacity activeOpacity={0.6}>
+    <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.card_top}>
           <View style={styles.card_left}>
             <Image
               style={styles.img}
               source={{
-                uri: 'https://media.publit.io/file/truong-dai-hoc-fpt-tp-hcm-1.jpg?fbclid=IwAR16cWCEg-Ef7UvVg418IR3DFd7ZiFyt4-f-IgTdpJWZ8p3X0YkWwovf2Ic',
+                uri: data.image,
                 width: '100%',
                 height: 150,
               }}
@@ -18,23 +18,22 @@ export default function School() {
             />
           </View>
           <View style={styles.card_right}>
-            <Text style={styles.name}>
-              Trường Đại học Khoa học Tự Nhiên TPHCM
-            </Text>
-            <Text numberOfLines={3} style={styles.shortDesc}>
-              Đào tạo bài bản, những kỹ sư tương lai công nghệ
+            <Text style={styles.name}>{data.name}</Text>
+            <Text numberOfLines={2} style={styles.shortDesc}>
+              {data.shortDesc}
             </Text>
             <Text numberOfLines={2} style={styles.marjor}>
-              Ngành chính: Công nghệ thông tin, thiết kế đồ họa
+              Ngành chính: {data.major.join(', ')}
             </Text>
           </View>
         </View>
         <View style={styles.card_bottom}>
           <Text numberOfLines={3} style={styles.description}>
-            Tạo một môi trường năng động, tích cực cho sinh viên. Nâng cao kỹ
-            năng mềm
+            {data.description}
           </Text>
-          <Text style={styles.grade}>Điểm tuyển sinh cao nhất: 20</Text>
+          <Text style={styles.grade}>
+            Điểm tuyển sinh cao nhất: {data.grade}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

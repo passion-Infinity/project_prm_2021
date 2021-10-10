@@ -1,61 +1,76 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
+import AreaScreen from './AreaScreen';
 
 export default function HomeScreen({navigation, router}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.header_top}>
-          <FontAwesome5 name={'chevron-left'} size={22} color={'#333'} />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <FontAwesome5 name={'chevron-left'} size={22} color={'#333'} />
+          </TouchableOpacity>
           <FontAwesome5 name={'list'} size={22} color={'#333'} />
         </View>
         <Text style={styles.title}>Select a region</Text>
       </View>
-      <View style={styles.body}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('TabNavigation1');
-          }}>
-          <View style={[styles.card, {backgroundColor: '#36b57b'}]}>
-            <View style={styles.card_left}>
-              <Text style={styles.card_title}>Khu vực miền Bắc</Text>
+      <ScrollView>
+        <View style={styles.body}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('AreaScreen');
+            }}>
+            <View style={[styles.card, {backgroundColor: '#36b57b'}]}>
+              <View style={styles.card_left}>
+                <Text style={styles.card_title}>Khu vực miền Bắc</Text>
+              </View>
+              <View style={styles.card_right}>
+                <Image
+                  style={styles.img}
+                  source={require('../../assets/images/chua-mot-cot.jpg')}
+                />
+              </View>
             </View>
-            <View style={styles.card_right}>
-              <Image
-                style={styles.img}
-                source={require('../../assets/images/chua-mot-cot.jpg')}
-              />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={[styles.card, {backgroundColor: '#f2c318'}]}>
+              <View style={styles.card_left}>
+                <Text style={styles.card_title}>Khu vực miền Trung</Text>
+              </View>
+              <View style={styles.card_right}>
+                <Image
+                  style={styles.img}
+                  source={require('../../assets/images/hoi-an.jpg')}
+                />
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={[styles.card, {backgroundColor: '#f2c318'}]}>
-            <View style={styles.card_left}>
-              <Text style={styles.card_title}>Khu vực miền Trung</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={[styles.card, {backgroundColor: '#f4655f'}]}>
+              <View style={styles.card_left}>
+                <Text style={styles.card_title}>Khu vực miền Nam</Text>
+              </View>
+              <View style={styles.card_right}>
+                <Image
+                  style={styles.img}
+                  source={require('../../assets/images/tphcm.jpg')}
+                />
+              </View>
             </View>
-            <View style={styles.card_right}>
-              <Image
-                style={styles.img}
-                source={require('../../assets/images/hoi-an.jpg')}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={[styles.card, {backgroundColor: '#f4655f'}]}>
-            <View style={styles.card_left}>
-              <Text style={styles.card_title}>Khu vực miền Nam</Text>
-            </View>
-            <View style={styles.card_right}>
-              <Image
-                style={styles.img}
-                source={require('../../assets/images/tphcm.jpg')}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -67,6 +82,7 @@ const styles = StyleSheet.create({
   header: {
     paddingLeft: 10,
     paddingTop: 15,
+    paddingBottom: 40,
   },
   header_top: {
     flexDirection: 'row',
@@ -75,8 +91,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   body: {
-    marginTop: 40,
     alignItems: 'center',
+    paddingBottom: 100,
   },
   title: {
     fontSize: 28,

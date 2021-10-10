@@ -19,7 +19,7 @@ function GetStartedScreen({navigation}) {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('HomeScreen');
+          navigation.navigate('TabNavigation1');
         }}>
         <Text style={styles.btn}>Get Started</Text>
       </TouchableOpacity>

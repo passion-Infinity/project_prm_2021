@@ -10,8 +10,19 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import School from '../components/School';
+import {data} from '../models/data';
 
-export default function AreaScreen() {
+export default function AreaScreen({navigation}) {
+  const renderData = data => {
+    return (
+      <School
+        key={data.id}
+        data={data}
+        onPress={() => navigation.navigate('SchoolDetailsScreen', {data})}
+      />
+    );
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
@@ -41,10 +52,7 @@ export default function AreaScreen() {
           </View>
           <ScrollView>
             <View style={styles.school}>
-              <School />
-              <School />
-              <School />
-              <School />
+              {data.map(item => renderData(item))}
             </View>
           </ScrollView>
         </View>
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fcfcfc',
-    paddingBottom: 250,
+    paddingBottom: 150,
   },
   header: {
     flexDirection: 'row',
