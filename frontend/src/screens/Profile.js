@@ -73,25 +73,33 @@ export default function Profile({navigation}) {
           <View style={styles.my_order_bottom}>
             <View style={styles.order_status}>
               <Text style={styles.text_icon}>
-                <FontAwesome5 name={'receipt'} color={''} size={20} />
+                <FontAwesome5 name={'receipt'} color={'#0091cc'} size={20} />
               </Text>
               <Text style={styles.text_content}>Chờ thanh toán</Text>
             </View>
             <View style={styles.order_status}>
               <Text style={styles.text_icon}>
-                <FontAwesome5 name={'dolly'} color={''} size={20} />
+                <FontAwesome5 name={'dolly'} color={'#0091cc'} size={20} />
               </Text>
               <Text style={styles.text_content}>Đang xử lý</Text>
             </View>
             <View style={styles.order_status}>
               <Text style={styles.text_icon}>
-                <FontAwesome5 name={'truck-moving'} color={''} size={20} />
+                <FontAwesome5
+                  name={'truck-moving'}
+                  color={'#0091cc'}
+                  size={20}
+                />
               </Text>
               <Text style={styles.text_content}>Đang vận chuyển</Text>
             </View>
             <View style={styles.order_status}>
               <Text style={styles.text_icon}>
-                <FontAwesome5 name={'book-reader'} color={''} size={20} />
+                <FontAwesome5
+                  name={'book-reader'}
+                  color={'#0091cc'}
+                  size={20}
+                />
               </Text>
               <Text style={styles.text_content}>Chờ đánh giá</Text>
             </View>

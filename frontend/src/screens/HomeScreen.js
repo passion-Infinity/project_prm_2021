@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,8 +9,16 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import AreaScreen from './AreaScreen';
+import api from '../../api/api';
 
 export default function HomeScreen({navigation, router}) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    api.get('/api/v1/regions').then(res => {
+      setData(res.data.data);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -23,27 +31,30 @@ export default function HomeScreen({navigation, router}) {
           </TouchableOpacity>
           <FontAwesome5 name={'list'} size={22} color={'#333'} />
         </View>
-        <Text style={styles.title}>Select a region</Text>
+        <Text style={styles.title}>Chọn khu vực</Text>
       </View>
       <ScrollView>
         <View style={styles.body}>
-          <TouchableOpacity
+          {data.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                navigation.navigate('AreaScreen');
+              }}>
+              <View style={[styles.card, {backgroundColor: '#36b57b'}]}>
+                <View style={styles.card_left}>
+                  <Text style={styles.card_title}>{item.name}</Text>
+                </View>
+                <View style={styles.card_right}>
+                  <Image style={styles.img} source={{uri: item.image}} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          ))}
+          {/* <TouchableOpacity
             onPress={() => {
-              navigation.navigate('AreaScreen');
+              console.log(data.data);
             }}>
-            <View style={[styles.card, {backgroundColor: '#36b57b'}]}>
-              <View style={styles.card_left}>
-                <Text style={styles.card_title}>Khu vực miền Bắc</Text>
-              </View>
-              <View style={styles.card_right}>
-                <Image
-                  style={styles.img}
-                  source={require('../../assets/images/chua-mot-cot.jpg')}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
             <View style={[styles.card, {backgroundColor: '#f2c318'}]}>
               <View style={styles.card_left}>
                 <Text style={styles.card_title}>Khu vực miền Trung</Text>
@@ -68,7 +79,7 @@ export default function HomeScreen({navigation, router}) {
                 />
               </View>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </ScrollView>
     </View>

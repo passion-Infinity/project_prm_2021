@@ -29,7 +29,7 @@ export default function AreaScreen({navigation}) {
         <View style={styles.header}>
           <View style={styles.header_left}>
             <FontAwesome5 name={'stream'} size={22} color={'#000'} />
-            <Text style={styles.header_left_text}>Select a option</Text>
+            <Text style={styles.header_left_text}>Lựa chọn của bạn</Text>
           </View>
           <View style={styles.header_right}>
             <FontAwesome5 name={'ellipsis-v'} size={22} color={'#000'} />
