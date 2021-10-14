@@ -64,25 +64,22 @@ export default function SchoolDetailsScreen({route}) {
             <View style={styles.intro_contact}>
               <FontAwesome5 name="phone" size={16} color="#333" />
               <Text style={[styles.intro_address, {color: '#333'}]}>
-                03794545459
+                {data.phone}
               </Text>
             </View>
             <TouchableOpacity
+              activeOpacity={0.6}
               onPress={() => {
-                Linking.openURL('https://hcmportal.fpt.edu.vn/');
+                Linking.openURL(data.link);
               }}>
               <View style={styles.intro_contact}>
                 <FontAwesome5 name="link" size={16} color="#333" />
-                <Text style={styles.intro_link}>
-                  https://hcmportal.fpt.edu.vn/
-                </Text>
+                <Text style={styles.intro_link}>{data.link}</Text>
               </View>
             </TouchableOpacity>
             <View style={styles.intro_contact}>
               <FontAwesome5 name="map-marker-alt" size={16} color="#333" />
-              <Text style={styles.intro_address}>
-                Địa chỉ: Lô 9E01 Khu công nghệ cao quận 9
-              </Text>
+              <Text style={styles.intro_address}>{data.address}</Text>
             </View>
           </View>
           <View style={styles.main_major}>
