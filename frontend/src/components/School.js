@@ -23,7 +23,7 @@ export default function School({data, onPress}) {
               {data.shortDesc}
             </Text>
             <Text numberOfLines={2} style={styles.marjor}>
-              Ngành chính: {data.major.join(', ')}
+              Ngành chính: {data.majorInfo[0].name}, {data.majorInfo[1].name}
             </Text>
           </View>
         </View>
@@ -43,7 +43,7 @@ export default function School({data, onPress}) {
 const styles = StyleSheet.create({
   card: {
     width: '90%',
-    height: 240,
+    height: 250,
     borderRadius: 20,
     backgroundColor: '#fff',
     marginBottom: 15,

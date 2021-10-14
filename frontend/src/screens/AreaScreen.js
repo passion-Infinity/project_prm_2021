@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,9 +10,24 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import School from '../components/School';
-import {data} from '../models/data';
+// import {data} from '../models/data';
+import schoolApi from '../../api/schoolApi';
 
-export default function AreaScreen({navigation}) {
+export default function AreaScreen({navigation, route}) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getListSchool = async () => {
+      try {
+        const params = {area: route.params.area};
+        const response = await schoolApi.getAll(params);
+        setData(response.data);
+      } catch (error) {
+        console.log('Failed to get school list: ', error);
+      }
+    };
+
+    getListSchool();
+  }, []);
   const renderData = data => {
     return (
       <School

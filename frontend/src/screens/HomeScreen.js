@@ -9,14 +9,21 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import AreaScreen from './AreaScreen';
-import api from '../../api/api';
+import regionApi from '../../api/regionApi';
 
 export default function HomeScreen({navigation, router}) {
   const [data, setData] = useState([]);
   useEffect(() => {
-    api.get('/api/v1/regions').then(res => {
-      setData(res.data.data);
-    });
+    const getListRegion = async () => {
+      try {
+        const response = await regionApi.getAll();
+        setData(response.data);
+      } catch (error) {
+        console.log('Failed to get region list: ', error);
+      }
+    };
+
+    getListRegion();
   }, []);
 
   return (
@@ -39,7 +46,7 @@ export default function HomeScreen({navigation, router}) {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                navigation.navigate('AreaScreen');
+                navigation.navigate('AreaScreen', {area: item.kv});
               }}>
               <View style={[styles.card, {backgroundColor: '#36b57b'}]}>
                 <View style={styles.card_left}>
